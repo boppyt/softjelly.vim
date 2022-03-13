@@ -6,7 +6,7 @@ A colorful, dark color scheme, based on [jellybeans.vim](https://github.com/nano
 This theme forks jellybeans.nvim, then combines candyman.vim and my various personal tweaks.
 
 ## TODO
-- Tweak the purple color (suggestions appreciated!)
+- Tweak the purple (Identifier), orange (Type) color (suggestions appreciated!)
 
 ## Installation
 

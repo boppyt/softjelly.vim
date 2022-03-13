@@ -9,7 +9,7 @@
 "
 "         "A colorful, dark color scheme for Vim."
 "
-" File:         jellybeans.vim
+" File:         softjelly.vim
 " URL:          github.com/nanotech/jellybeans.vim
 " Scripts URL:  vim.org/scripts/script.php?script_id=2555
 " Maintainer:   NanoTech (nanotech.nanotechcorp.net)
@@ -68,7 +68,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "jellybeans"
+let colors_name = "softjelly"
 
 if has("gui_running") || (has('termguicolors') && &termguicolors)
   let s:true_color = 1
@@ -83,23 +83,23 @@ else
 endif
 
 " Configuration Variables:
-" - g:jellybeans_overrides          (default = {})
-" - g:jellybeans_use_lowcolor_black (default = 0)
-" - g:jellybeans_use_gui_italics    (default = 1)
-" - g:jellybeans_use_term_italics   (default = 0)
+" - g:softjelly_overrides          (default = {})
+" - g:softjelly_use_lowcolor_black (default = 0)
+" - g:softjelly_use_gui_italics    (default = 1)
+" - g:softjelly_use_term_italics   (default = 0)
 
 let s:background_color = "151515"
 
-if exists("g:jellybeans_overrides")
-  let s:overrides = g:jellybeans_overrides
+if exists("g:softjelly_overrides")
+  let s:overrides = g:softjelly_overrides
 else
   let s:overrides = {}
 endif
 
 " Backwards compatibility
-if exists("g:jellybeans_background_color")
-  \ || exists("g:jellybeans_background_color_256")
-  \ || exists("g:jellybeans_use_term_background_color")
+if exists("g:softjelly_background_color")
+  \ || exists("g:softjelly_background_color_256")
+  \ || exists("g:softjelly_use_term_background_color")
 
   let s:overrides = deepcopy(s:overrides)
 
@@ -107,22 +107,22 @@ if exists("g:jellybeans_background_color")
     let s:overrides["background"] = {}
   endif
 
-  if exists("g:jellybeans_background_color")
-    let s:overrides["background"]["guibg"] = g:jellybeans_background_color
+  if exists("g:softjelly_background_color")
+    let s:overrides["background"]["guibg"] = g:softjelly_background_color
   endif
 
-  if exists("g:jellybeans_background_color_256")
-    let s:overrides["background"]["256ctermbg"] = g:jellybeans_background_color_256
+  if exists("g:softjelly_background_color_256")
+    let s:overrides["background"]["256ctermbg"] = g:softjelly_background_color_256
   endif
 
-  if exists("g:jellybeans_use_term_background_color")
-    \ && g:jellybeans_use_term_background_color
+  if exists("g:softjelly_use_term_background_color")
+    \ && g:softjelly_use_term_background_color
     let s:overrides["background"]["ctermbg"] = "NONE"
     let s:overrides["background"]["256ctermbg"] = "NONE"
   endif
 endif
 
-if exists("g:jellybeans_use_lowcolor_black") && g:jellybeans_use_lowcolor_black
+if exists("g:softjelly_use_lowcolor_black") && g:softjelly_use_lowcolor_black
   let s:termBlack = "Black"
 else
   let s:termBlack = "Grey"
@@ -132,7 +132,7 @@ endif
 " after Normal's `guibg` is already set to a color. See:
 "
 " - https://github.com/vim/vim/issues/981
-" - https://github.com/nanotech/jellybeans.vim/issues/64
+" - https://github.com/nanotech/softjelly.vim/issues/64
 "
 " To work around this, ensure we don't set the default background
 " color before an override changes it to `NONE` by ensuring that the
@@ -399,13 +399,13 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
 
   let l:attr = s:prefix_highlight_value_with("", a:attr)
 
-  if exists("g:jellybeans_use_term_italics") && g:jellybeans_use_term_italics
+  if exists("g:softjelly_use_term_italics") && g:softjelly_use_term_italics
     let l:cterm_attr = l:attr
   else
     let l:cterm_attr = s:remove_italic_attr(l:attr)
   endif
 
-  if !exists("g:jellybeans_use_gui_italics") || g:jellybeans_use_gui_italics
+  if !exists("g:softjelly_use_gui_italics") || g:softjelly_use_gui_italics
     let l:gui_attr = l:attr
   else
     let l:gui_attr = s:remove_italic_attr(l:attr)
@@ -416,14 +416,14 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
 endfun
 " }}}
 
-call s:X("Normal","e8e8d3",s:background_color,"","White","")
+call s:X("Normal","cbc0ab",s:background_color,"","White","")
 set background=dark
 
 call s:X("CursorLine","","1c1c1c","","",s:termBlack)
 call s:X("CursorColumn","","1c1c1c","","",s:termBlack)
 
 " Some of Terminal.app's default themes have a cursor color
-" too close to Jellybeans' preferred MatchParen background
+" too close to softjelly' preferred MatchParen background
 " color to be easily distinguishable. Other terminals tend
 " to use a brighter cursor color.
 "
@@ -431,10 +431,10 @@ call s:X("CursorColumn","","1c1c1c","","",s:termBlack)
 " low-color terminals if the preferred background color is
 " not available.
 if !has('gui_running') && $TERM_PROGRAM == "Apple_Terminal"
-    let s:matchParenGuiFg = "dd0093"
+    let s:matchParenGuiFg = "d20b8f"
     let s:matchParenGuiBg = "000000"
 else
-    let s:matchParenGuiFg = "ffffff"
+    let s:matchParenGuiFg = "d0c6b3"
     let s:matchParenGuiBg = "556779"
 endif
 if s:termBlack != "Black"
@@ -449,11 +449,11 @@ call s:X("MatchParen",s:matchParenGuiFg,s:matchParenGuiBg,"bold",
 
 call s:X("TabLine","000000","b0b8c0","italic","",s:termBlack)
 call s:X("TabLineFill","9098a0","","","",s:termBlack)
-call s:X("TabLineSel","000000","f0f0f0","italic,bold",s:termBlack,"White")
+call s:X("TabLineSel","000000","799d6a","italic,bold",s:termBlack,"White")
 
 " Auto-completion
-call s:X("Pmenu","ffffff","606060","","White",s:termBlack)
-call s:X("PmenuSel","101010","eeeeee","",s:termBlack,"White")
+call s:X("Pmenu","cbc0ab","404040","","White",s:termBlack)
+call s:X("PmenuSel","f0a0c0","606060","",s:termBlack,"White")
 
 call s:X("Visual","","404040","","",s:termBlack)
 call s:X("Cursor",s:background_color,"b0d0f0","","","")
@@ -463,8 +463,8 @@ call s:X("CursorLineNr","ccc5c4","","NONE","White","")
 call s:X("Comment","888888","","italic","Grey","")
 call s:X("Todo","c7c7c7","","bold","White",s:termBlack)
 
-call s:X("StatusLine","000000","dddddd","italic","","White")
-call s:X("StatusLineNC","ffffff","403c41","italic","White","Black")
+call s:X("StatusLine","cbc0ab","303030","","","White")
+call s:X("StatusLineNC","444444","b0b8c0","","White","Black")
 call s:X("VertSplit","777777","403c41","",s:termBlack,s:termBlack)
 call s:X("WildMenu","f0a0c0","302028","","Magenta","")
 
@@ -482,16 +482,16 @@ call s:X("Delimiter","668799","","","Grey","")
 call s:X("String","99ad6a","","","Green","")
 call s:X("StringDelimiter","556633","","","DarkGreen","")
 
-call s:X("Identifier","c6b6ee","","","LightCyan","")
+call s:X("Identifier","b6a9ff","","","LightCyan","")
 call s:X("Structure","8fbfdc","","","LightCyan","")
-call s:X("Function","fad07a","","","Yellow","")
+call s:X("Function","c9a554","","","Yellow","")
 call s:X("Statement","8197bf","","","DarkBlue","")
 call s:X("PreProc","8fbfdc","","","LightBlue","")
 
 hi! link Operator Structure
 hi! link Conceal Operator
 
-call s:X("Type","ffb964","","","Yellow","")
+call s:X("Type","d8a465","","","Yellow","")
 call s:X("NonText","606060",s:background_color,"",s:termBlack,"")
 
 call s:X("SpecialKey","444444","1c1c1c","",s:termBlack,"")
@@ -519,7 +519,7 @@ hi! link diffAdded String
 
 " VimDiff
 
-call s:X("DiffAdd","D2EBBE","437019","","White","DarkGreen")
+call s:X("DiffAdd","B9E09A","437019","","White","DarkGreen")
 call s:X("DiffDelete","40000A","700009","","DarkRed","DarkRed")
 call s:X("DiffChange","","2B5B77","","White","DarkBlue")
 call s:X("DiffText","8fbfdc","000000","reverse","Yellow","")
@@ -546,11 +546,11 @@ hi! link pythonOperator Statement
 
 hi! link rubySharpBang Comment
 call s:X("rubyClass","447799","","","DarkBlue","")
-call s:X("rubyIdentifier","c6b6fe","","","Cyan","")
+call s:X("rubyIdentifier","b6a9ff","","","Cyan","")
 hi! link rubyConstant Type
 hi! link rubyFunction Function
 
-call s:X("rubyInstanceVariable","c6b6fe","","","Cyan","")
+call s:X("rubyInstanceVariable","b6a9ff","","","Cyan","")
 call s:X("rubySymbol","7697d6","","","Blue","")
 hi! link rubyGlobalVariable rubyInstanceVariable
 hi! link rubyModule rubyClass
@@ -561,7 +561,7 @@ hi! link rubyStringDelimiter StringDelimiter
 hi! link rubyInterpolationDelimiter Identifier
 
 call s:X("rubyRegexpDelimiter","540063","","","Magenta","")
-call s:X("rubyRegexp","dd0093","","","DarkMagenta","")
+call s:X("rubyRegexp","d20b8f","","","DarkMagenta","")
 call s:X("rubyRegexpSpecial","a40073","","","Magenta","")
 
 call s:X("rubyPredefinedIdentifier","de5577","","","Red","")
@@ -651,7 +651,7 @@ call s:X("IndentGuidesEven","","1b1b1b","","","")
 " Plugins, etc.
 
 hi! link TagListFileName Directory
-call s:X("PreciseJumpTarget","B9ED67","405026","","White","Green")
+call s:X("PreciseJumpTarget","90DA19","405026","","White","Green")
 
 " Manual overrides for 256-color terminals. Dark colors auto-map badly.
 if !s:low_color

@@ -1,20 +1,12 @@
-jellybeans.vim
+softjelly.vim
 ==============
 
-A colorful, dark color scheme, inspired by [ir_black][] and [twilight][].
+A colorful, dark color scheme, based on [jellybeans.vim](https://github.com/nanotech/jellybeans.vim)
 
-Designed primarily for a graphical Vim, but includes support for 256, 88, 16,
-and 8 color terminals. On a 16 or 8 color terminal, replace its colors with
-those in `ansi-term-colors.txt` for best results.
+This theme forks jellybeans.nvim, then combines candyman.vim and my various personal tweaks.
 
-This script is [vimscript #2555][vimscript] at Vim.org.
-
-Jellybeans has also been ported to other editors and programs,
-listed on the [Ports wiki page][wiki-ports].
-
-Scroll down for [screenshots][ss-anchor]!
-
-[wiki-ports]: https://github.com/nanotech/jellybeans.vim/wiki/Ports
+## TODO
+- Tweak the purple color (suggestions appreciated!)
 
 ## Installation
 
@@ -23,19 +15,19 @@ Install the color scheme by adding it to your `~/.vim/colors` directory
 ```bash
 mkdir -p ~/.vim/colors
 cd ~/.vim/colors
-curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+curl -O https://raw.githubusercontent.com/boppyt/softjelly.vim/master/colors/softjelly.vim
 ```
 
-Jellybeans can also be installed through plugin managers such as
+Softjelly can also be installed through plugin managers such as
 [dein.vim][dein], [Pathogen][pathogen], [VAM][vam],
 [vim-plug][vim-plug], [Vundle][vundle], etc.
 
-To enable the jellybeans color scheme, use 
+To enable the softjelly color scheme, use
 ```
-:colorscheme jellybeans
+:colorscheme softjelly
 ```
 
-If you are satisfied, you can add `colorscheme jellybeans` to your `~/.vimrc` file (`_vimrc` in Windows).
+If you are satisfied, you can add `colorscheme softjelly` to your `~/.vimrc` file (`_vimrc` in Windows).
 
 [dein]: https://github.com/Shougo/dein.vim
 [pathogen]: https://github.com/tpope/vim-pathogen
@@ -47,18 +39,18 @@ If you are satisfied, you can add `colorscheme jellybeans` to your `~/.vimrc` fi
 
 ### Custom Highlights
 
-If you prefer slightly different colors from what Jellybeans defines,
-you can set `g:jellybeans_overrides` in your .vimrc to a dictionary of
+If you prefer slightly different colors from what Softjelly defines,
+you can set `g:softjelly_overrides` in your .vimrc to a dictionary of
 custom highlighting parameters:
 
-    let g:jellybeans_overrides = {
+    let g:softjelly_overrides = {
     \    'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
     \              'ctermfg': 'Black', 'ctermbg': 'Yellow',
     \              'attr': 'bold' },
     \    'Comment': { 'guifg': 'cccccc' },
     \}
 
-This removes the need to edit Jellybeans directly, simplifying
+This removes the need to edit Softjelly directly, simplifying
 upgrades. In addition, RGB colors specified this way are run through
 the same color approximation algorithm that the core theme uses, so
 your colors work just as well in 256-color terminals.
@@ -72,39 +64,39 @@ its choices.
 To set a custom background color, override the special
 `background` highlight group:
 
-    let g:jellybeans_overrides = {
+    let g:softjelly_overrides = {
     \    'background': { 'guibg': '000000' },
     \}
 
-Jellybeans uses the background color in multiple highlight
+Softjelly uses the background color in multiple highlight
 groups. Using the special `background` group overrides them all
 at once.
 
-This replaces `g:jellybeans_background_color` and
-`g:jellybeans_background_color_256` from Jellybeans versions
+This replaces `g:softjelly_background_color` and
+`g:softjelly_background_color_256` from softjelly versions
 before 1.6.
 
 #### Terminal Background
 
 If you would prefer to use your terminal's default background
 (e.g. for transparent backgrounds, image backgrounds, or a
-different color) instead of the background color that Jellybeans
+different color) instead of the background color that softjelly
 applies, use this `background` override code:
 
-    let g:jellybeans_overrides = {
+    let g:softjelly_overrides = {
     \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
     \}
     if has('termguicolors') && &termguicolors
-        let g:jellybeans_overrides['background']['guibg'] = 'none'
+        let g:softjelly_overrides['background']['guibg'] = 'none'
     endif
 
 #### `MatchParen` Colors
 
-Jellybeans sets alternate `MatchParen` colors (magenta on black)
+softjelly sets alternate `MatchParen` colors (magenta on black)
 in some terminals to be more readable out of the box:
 
 - Apple's Terminal.app has default themes with cursor colors
-  that are too close in brightness to Jellybeans' preferred
+  that are too close in brightness to softjelly' preferred
   `MatchParen` background color of `#556779` to be
   clearly distinguishable.
 - Default 16-color terminal palettes don't typically have a
@@ -114,7 +106,7 @@ in some terminals to be more readable out of the box:
 If you use Terminal.app with a brighter cursor color, you can
 use the standard `MatchParen` colors with this override:
 
-    let g:jellybeans_overrides = {
+    let g:softjelly_overrides = {
     \    'MatchParen': { 'guifg': 'ffffff', 'guibg': '556779' },
     \}
 
@@ -125,7 +117,7 @@ below](#low-color-black-16-and-8-color-terminals).
 If you prefer the alternate `MatchParen` colors, you can use them
 everywhere with
 
-    let g:jellybeans_overrides = {
+    let g:softjelly_overrides = {
     \    'MatchParen': { 'guifg': 'dd0093', 'guibg': '000000',
     \                    'ctermfg': 'Magenta', 'ctermbg': '' },
     \}
@@ -134,29 +126,29 @@ everywhere with
 
 ### Italics
 
-Jellybeans disables italics in terminal Vim by default, as some
+softjelly disables italics in terminal Vim by default, as some
 terminals do other things with the text's colors instead of
 actually italicizing the text. If your terminal does fully
 support italics, add
 
-    let g:jellybeans_use_term_italics = 1
+    let g:softjelly_use_term_italics = 1
 
 to your .vimrc to enable italics in terminal Vim.
 
 If you don't want italics even in GUI Vim, add
 
-    let g:jellybeans_use_gui_italics = 0
+    let g:softjelly_use_gui_italics = 0
 
 ### Low-Color Black (16 and 8 color terminals)
 
 Since the background on a dark terminal is usually black already,
-Jellybeans can appropriate the black ANSI color as a dark grey and
+softjelly can appropriate the black ANSI color as a dark grey and
 use no color when it really wants black.
 
 After changing your terminal’s color palette (`#444444` is
 suggested), add this to your .vimrc:
 
-    let g:jellybeans_use_lowcolor_black = 1
+    let g:softjelly_use_lowcolor_black = 1
 
 *This option was changed to be disabled by default in version 1.7.*
 

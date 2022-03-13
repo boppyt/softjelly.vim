@@ -484,14 +484,14 @@ call s:X("StringDelimiter","556633","","","DarkGreen","")
 
 call s:X("Identifier","b6a9ff","","","LightCyan","")
 call s:X("Structure","8fbfdc","","","LightCyan","")
-call s:X("Function","c9a554","","","Yellow","")
+call s:X("Function","dcb66a","","","Yellow","")
 call s:X("Statement","8197bf","","","DarkBlue","")
 call s:X("PreProc","8fbfdc","","","LightBlue","")
 
 hi! link Operator Structure
 hi! link Conceal Operator
 
-call s:X("Type","d8a465","","","Yellow","")
+call s:X("Type","dfa358","","","Yellow","")
 call s:X("NonText","606060",s:background_color,"",s:termBlack,"")
 
 call s:X("SpecialKey","444444","1c1c1c","",s:termBlack,"")

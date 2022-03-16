@@ -453,7 +453,8 @@ call s:X("TabLineSel","000000","799d6a","italic,bold",s:termBlack,"White")
 
 " Auto-completion
 call s:X("Pmenu","cbc0ab","404040","","White",s:termBlack)
-call s:X("PmenuSel","f0a0c0","606060","",s:termBlack,"White")
+call s:X("PmenuSel","f0a0c0","606060","","Magenta",s:termBlack)
+call s:X("PmenuThumb","","dfa358","","","Yellow")
 
 call s:X("Visual","","404040","","",s:termBlack)
 call s:X("Cursor",s:background_color,"b0d0f0","","","")
